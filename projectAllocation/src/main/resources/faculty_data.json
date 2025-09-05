@@ -1,0 +1,352 @@
+[
+  {
+    "email": "seema.shukla@sharda.ac.in",
+    "name": "Dr. Seema Shukla",
+    "orcid": "0000-0002-5273-9849",
+    "scopus": "56668296700",
+    "department": "CSE"
+  },
+  {
+    "email": "sakshini.hangloo@sharda.ac.in",
+    "name": "Ms. Sakshini Hangloo",
+    "orcid": "0000-0001-5233-3745",
+    "scopus": "57386328000",
+    "department": "CSE"
+  },
+  {
+    "email": "keshav.kaushik@sharda.ac.in",
+    "name": "Dr. Keshav Kaushik",
+    "orcid": "0000-0003-3777-765X",
+    "scopus": "57189443247",
+    "department": "CSE"
+  },
+  {
+    "email": "dharm.raj@sharda.ac.in",
+    "name": "Mr. Dharm Raj",
+    "orcid": "0000-0001-8363-0515",
+    "scopus": "36548975500",
+    "department": "CSE"
+  },
+  {
+    "email": "shivam.tiwari1@sharda.ac.in",
+    "name": "Dr. Shivam Tiwari",
+    "orcid": "0000-0002-0288-1951",
+    "scopus": "57214310247",
+    "department": "CSE"
+  },
+  {
+    "email": "shree.harsh@sharda.ac.in",
+    "name": "Dr. Shree Harsh Attri",
+    "orcid": "0000-0001-6915-0048",
+    "scopus": "55613332100",
+    "department": "CSE"
+  },
+  {
+    "email": "zatin.gupta@sharda.ac.in",
+    "name": "Dr. Zatin Gupta",
+    "orcid": "0000-0003-1824-6677",
+    "scopus": "57697450100",
+    "department": "CSE"
+  },
+  {
+    "email": "annu.mishra2@sharda.ac.in",
+    "name": "Dr. Annu Mishra",
+    "orcid": "0000-0001-9442-0601",
+    "scopus": "57267170400",
+    "department": "CSE"
+  },
+  {
+    "email": "aanchal.vij@sharda.ac.in",
+    "name": "Ms. Aanchal Vij",
+    "orcid": "0000-0002-7940-0650",
+    "scopus": "57221954706",
+    "department": "CSE"
+  },
+  {
+    "email": "sreejith.s@sharda.ac.in",
+    "name": "Dr. Sreejith. S",
+    "orcid": "0000-0001-9533-3534",
+    "scopus": "56613171600",
+    "department": "CSE"
+  },
+  {
+    "email": "shubham.kumar5@sharda.ac.in",
+    "name": "Dr. Shubham Kumar",
+    "orcid": "0009-0009-1326-9379",
+    "scopus": "58739322700",
+    "department": "CSE"
+  },
+  {
+    "email": "javed.ahmad@sharda.ac.in",
+    "name": "Dr. Javed Ahmad",
+    "orcid": "0000-0003-2664-0316",
+    "scopus": "57210531373",
+    "department": "CSE"
+  },
+  {
+    "email": "ambuj.agarwal@sharda.ac.in",
+    "name": "Prof. (Dr.) Ambuj Agarwal",
+    "orcid": "0000-0001-5181-5750",
+    "scopus": "57189048540",
+    "department": "CSE"
+  },
+  {
+    "email": "velayudham.sathiyasuntharam@sharda.ac.in",
+    "name": "Prof. (Dr.) Velayudham Sathiyasuntharam",
+    "orcid": "0000-0002-7143-7598",
+    "scopus": "57211538691",
+    "department": "CSE"
+  },
+  {
+    "email": "shajee.mohan@sharda.ac.in",
+    "name": "Prof. (Dr.) Shajee Mohan B. S.",
+    "orcid": "0000-0001-6820-960X",
+    "scopus": "57193712042",
+    "department": "CSE"
+  },
+  {
+    "email": "sushant.jhingran@sharda.ac.in",
+    "name": "Dr. Sushant Jhingran",
+    "orcid": "0000-0002-6933-4282",
+    "scopus": "57262467200",
+    "department": "CSE"
+  },
+  {
+    "email": "ketan.anand@sharda.ac.in",
+    "name": "Mr. Ketan Anand",
+    "orcid": "0000-0001-7107-8807",
+    "scopus": "58688349200",
+    "department": "CSE"
+  },
+  {
+    "email": "ramneet@sharda.ac.in",
+    "name": "Dr. Ramneet",
+    "orcid": "0000-0002-4066-5416",
+    "scopus": "58587395200",
+    "department": "CSE"
+  },
+  {
+    "email": "krishan.kumar3@sharda.ac.in",
+    "name": "Dr. Krishan Kumar",
+    "orcid": "0000-0002-1348-2040",
+    "scopus": "56507836400",
+    "department": "CSE"
+  },
+  {
+    "email": "mayank.goyal2@sharda.ac.in",
+    "name": "Dr. Mayank Kumar Goyal",
+    "orcid": "0000-0001-8966-496X",
+    "scopus": "57218573912",
+    "department": "CSE"
+  },
+  {
+    "email": "sudeep.varshney@sharda.ac.in",
+    "name": "Prof.(Dr.) Sudeep Varshney",
+    "orcid": "0000-0002-9136-8614",
+    "scopus": "56785470500",
+    "department": "CSE"
+  },
+  {
+    "email": "nishant.upadhyay@sharda.ac.in",
+    "name": "Mr. Nishant Upadhyay",
+    "orcid": "0009-0002-4133-5969",
+    "scopus": "NA",
+    "department": "CSE"
+  },
+  {
+    "email": "jyoti.11@sharda.ac.in",
+    "name": "Dr. Jyoti Gautam",
+    "orcid": "0009-0003-4525-0986",
+    "scopus": "56742993400",
+    "department": "CSE"
+  },
+  {
+    "email": "kalicharan.2@sharda.ac.in",
+    "name": "Dr. Kali Charan",
+    "orcid": "0000-0003-4913-4221",
+    "scopus": "57482609300",
+    "department": "CSE"
+  },
+  {
+    "email": "avinash.sharma1@sharda.ac.in",
+    "name": "Dr. Avinash Kumar Sharma",
+    "orcid": "0000-0001-6762-6778",
+    "scopus": "59459196900",
+    "department": "CSE"
+  },
+  {
+    "email": "amit.rai@sharda.ac.in",
+    "name": "Mr. Amit Kumar Rai",
+    "orcid": "0009-0006-4982-2592",
+    "scopus": "a.k.rai267@gmail.com",
+    "department": "CSE"
+  },
+  {
+    "email": "kusumlata.1@sharda.ac.in",
+    "name": "Dr. Kusum Lata",
+    "orcid": "0000-0002-9492-7653",
+    "scopus": "57219452063",
+    "department": "CSE"
+  },
+  {
+    "email": "vishal.jain@sharda.ac.in",
+    "name": "Prof. (Dr.) Vishal Jain",
+    "orcid": "0000-0003-1126-7424",
+    "scopus": "57192707657",
+    "department": "CSE"
+  },
+  {
+    "email": "bal.saraswat@sharda.ac.in",
+    "name": "Dr. Bal Krishna Saraswat",
+    "orcid": "0000-0002-8294-718X",
+    "scopus": "56901114100",
+    "department": "CSE"
+  },
+  {
+    "email": "laxmi.sagar1@sharda.ac.in",
+    "name": "Dr. Laxmi Kant Sagar",
+    "orcid": "0000-0002-9434-161X",
+    "scopus": "57216647737",
+    "department": "CSE"
+  },
+  {
+    "email": "rosey.jadon@sharda.ac.in",
+    "name": "Dr. Rosey Chauhan",
+    "orcid": "0000-0003-2557-1101",
+    "scopus": "57219900788",
+    "department": "CSE"
+  },
+  {
+    "email": "deepthi.s@sharda.ac.in",
+    "name": "Dr. Deepthi P S",
+    "orcid": "0000-0002-6806-302X",
+    "scopus": "57221925280",
+    "department": "CSE"
+  },
+  {
+    "email": "ashish.jain4@sharda.ac.in",
+    "name": "Mr. Ashish Jain",
+    "orcid": "0009-0008-0098-0201",
+    "scopus": "57680421700",
+    "department": "CSE"
+  },
+  {
+    "email": "nishant.gupta@sharda.ac.in",
+    "name": "Dr. Nishant Gupta",
+    "orcid": "0000-0002-6674-9159",
+    "scopus": "57209931542",
+    "department": "CSE"
+  },
+  {
+    "email": "renu.mishra@sharda.ac.in",
+    "name": "Dr. Renu Mishra",
+    "orcid": "0000-0002-5211-8751",
+    "scopus": "57209499438",
+    "department": "CSE"
+  },
+  {
+    "email": "yojna.arora@sharda.ac.in",
+    "name": "Dr. Yojna Arora",
+    "orcid": "0000-0002-6056-2465",
+    "scopus": "57194409375",
+    "department": "CSE"
+  },
+  {
+    "email": "sucharitha.yadala@sharda.ac.in",
+    "name": "Dr. Y. Sucharitha",
+    "orcid": "0000-0001-7452-6126",
+    "scopus": "57205682539",
+    "department": "CSE"
+  },
+  {
+    "email": "rajendra.kumar@sharda.ac.in",
+    "name": "Dr. Rajendra Kumar",
+    "orcid": "0000-0002-8427-5428",
+    "scopus": "57225853677",
+    "department": "CSE"
+  },
+  {
+    "email": "prashant.upadhyay@sharda.ac.in",
+    "name": "Mr. Prashant Upadhyay",
+    "orcid": "0000-0002-9257-9181",
+    "scopus": "58161025100",
+    "department": "CSE"
+  },
+  {
+    "email": "shikha.verma@sharda.ac.in",
+    "name": "Dr. Shikha Verma",
+    "orcid": "0000-0002-5664-8522",
+    "scopus": "57211852478",
+    "department": "CSE"
+  },
+  {
+    "email": "nidhi.gupta1@sharda.ac.in",
+    "name": "Dr. Nidhi Gupta",
+    "orcid": "0000-0001-9073-9973",
+    "scopus": "57210419810",
+    "department": "CSE"
+  },
+  {
+    "email": "manishverma649@gmail.com",
+    "name": "Prof. (Dr.) Parma Nand",
+    "orcid": "0000-0002-5081-2520",
+    "scopus": "57202625678",
+    "department": "CSE"
+  },
+  {
+    "email": "sandeep.gupta4@sharda.ac.in",
+    "name": "Prof. (Dr.) Sandeep Gupta",
+    "orcid": "0000-0002-0534-4836",
+    "scopus": "57208595817",
+    "department": "CSE"
+  },
+  {
+    "email": "ali.abidi@sharda.ac.in",
+    "name": "Dr. Ali Imam Abidi",
+    "orcid": "0000-0002-7420-0027",
+    "scopus": "57095593900",
+    "department": "CSE"
+  },
+  {
+    "email": "lakshmi.s@sharda.ac.in",
+    "name": "Dr. S. Lakshmi",
+    "orcid": "0000-0003-2317-9552",
+    "scopus": "59857256200",
+    "department": "CSE"
+  },
+  {
+    "email": "anubhava.srivastava@sharda.ac.in",
+    "name": "Dr. Anubhava Srivastava",
+    "orcid": "0000-0003-2227-6158",
+    "scopus": "57191275662",
+    "department": "CSE"
+  },
+  {
+    "email": "amrita.prasad@sharda.ac.in",
+    "name": "Prof. (Dr.) Amrita",
+    "orcid": "0000-0001-6922-3403",
+    "scopus": "56150467000",
+    "department": "CSE"
+  },
+  {
+    "email": "jayant.shekhar@sharda.ac.in",
+    "name": "Prof. (Dr.) Jayant Shekhar",
+    "orcid": "0009-0003-1757-1854",
+    "scopus": "OAJ-0272-2025",
+    "department": "CSE"
+  },
+  {
+    "email": "deepti.sahu@sharda.ac.in",
+    "name": "Ms. Deepti Sahu",
+    "orcid": "0000-0001-9839-8210",
+    "scopus": "57191037340",
+    "department": "CSE"
+  },
+  {
+    "email": "gunjan.aggarwal@sharda.ac.in",
+    "name": "Ms. Gunjan Aggarwal",
+    "orcid": "0000-0002-0043-  6539",
+    "scopus": "57222404358",
+    "department": "CSE"
+  }
+]

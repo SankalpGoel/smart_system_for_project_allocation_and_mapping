@@ -4,6 +4,7 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.smartportal.projectAllocation.model.Faculty;
 import com.smartportal.projectAllocation.repository.FacultyRepository;
+import com.smartportal.projectAllocation.service.FacultyDataService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.*;
 import org.springframework.web.client.RestTemplate;
@@ -21,6 +22,9 @@ public class FacultyController {
 
     @Autowired
     private RestTemplate restTemplate;
+
+    @Autowired
+    private FacultyDataService facultyDataService;
 
     @PostMapping
     public Faculty registerFaculty(@RequestBody Faculty faculty) {
@@ -56,7 +60,6 @@ public class FacultyController {
             JsonNode root = objectMapper.readTree(response.getBody());
 
             String keywords = root.get("keywords").asText();
-            
             if (keywords != null && !keywords.isEmpty()) {
                 faculty.setDomainExpertise(keywords);
             }
@@ -67,5 +70,12 @@ public class FacultyController {
             e.printStackTrace();
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
+    }
+
+    @PostMapping("/load-json")
+    public String loadFacultyJson() {
+        
+        facultyDataService.saveFacultyDataFromJson();
+        return "Faculty data inserted from JSON into DB!";
     }
 }
