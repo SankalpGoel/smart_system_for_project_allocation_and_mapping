@@ -4,7 +4,7 @@ from scopus_scraper import get_scopus_titles
 import google.generativeai as genai
 
 # Configure Gemini API key
-genai.configure(api_key="your_api_key")
+genai.configure(api_key="AIzaSyAg4l5REk8t3Ug5Hbtbca7_hiylXKEHYGQ")
 
 # Initialize Gemini Pro model
 model = genai.GenerativeModel("gemini-2.5-flash")

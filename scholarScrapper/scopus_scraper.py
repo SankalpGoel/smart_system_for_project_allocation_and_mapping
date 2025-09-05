@@ -1,6 +1,6 @@
 import requests
 
-API_KEY = "your_api"
+API_KEY = "0c3d354a74922e2556a4c638d9e5286d"
 
 def get_scopus_titles(author_id):
     url = f"https://api.elsevier.com/content/author?author_id={author_id}&apiKey={API_KEY}"
