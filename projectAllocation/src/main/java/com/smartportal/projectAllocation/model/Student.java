@@ -9,13 +9,15 @@ public class Student {
     private Long id;
     private String name;
     private String email;
-    private String domainInterest;  // e.g., "AI and ML"
+    private String projectTitle; 
+    private String projectIdea; 
 
-    public Student(Long id, String name, String email, String domainInterest) {
+    public Student(Long id, String name, String email, String projectTitle, String projectIdea) {
         this.id = id;
         this.name = name;
         this.email = email;
-        this.domainInterest = domainInterest;
+        this.projectTitle = projectTitle;
+        this.projectIdea = projectIdea;
     }
     public Faculty getAssignedFaculty() {
         return assignedFaculty;
@@ -44,7 +46,11 @@ public class Student {
 
     public void setEmail(String email) { this.email = email; }
 
-    public String getDomainInterest() { return domainInterest; }
+    public String getProjectTitle() { return projectTitle; }
 
-    public void setDomainInterest(String domainInterest) { this.domainInterest = domainInterest; }
+    public void setProjectTitle(String projectTitle) { this.projectTitle = projectTitle; }
+
+    public String getProjectIdea() { return projectIdea; }
+
+    public void setProjectIdea(String projectIdea) { this.projectIdea = projectIdea; }
 }

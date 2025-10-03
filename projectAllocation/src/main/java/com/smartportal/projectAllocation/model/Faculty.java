@@ -19,14 +19,19 @@ public class Faculty {
     @Column(name="domainExpertise", columnDefinition = "TEXT")
     private String domainExpertise; 
 
+    private String orcid;
+    private String scopus;
+
     // Constructors
     public Faculty() {}
 
-    public Faculty(String name, String email, String department, String domainExpertise) {
+    public Faculty(String name, String email, String department, String domainExpertise, String orcid, String scopus) {
         this.name = name;
         this.email = email;
         this.department = department;
         this.domainExpertise = domainExpertise;
+        this.orcid = orcid;
+        this.scopus = scopus;
     }
 
     // Getters and Setters
@@ -49,9 +54,6 @@ public class Faculty {
     public String getDomainExpertise() { return domainExpertise; }
 
     public void setDomainExpertise(String domainExpertise) { this.domainExpertise = domainExpertise; }
-
-    private String orcid;
-    private String scopus;
 
     public String getOrcid() { return orcid; }
     public void setOrcid(String orcid) { this.orcid = orcid; }
