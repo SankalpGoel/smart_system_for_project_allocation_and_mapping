@@ -1,24 +1,24 @@
 import google.generativeai as genai
 
 # Configure API key
-genai.configure(api_key="AIzaSyAg4l5REk8t3Ug5Hbtbca7_hiylXKEHYGQ")
+genai.configure(api_key="AIzaSyB300izIXQLnzEKA_1PxXrQxvSFYpxMLc0")
 
 # Initialize the model (Gemini Pro)
 model = genai.GenerativeModel("gemini-2.5-flash")
 
 # Prompt the model
-response = model.generate_content("""A Comprehensive Analysis of Block Chain-Based Crypto Currency Systems for Real-World Adoption
-        Unveiling the Future: A Review of Financial Fraud Detection Using Artificial Intelligence Techniques
-        A Comprehensive Review on Energy Efficient Internet of Things based Wireless Sensor Network
-        A Comprehensive Survey on Production of Fabric from the Organic Extract
-        Enhancing Brain Tumor Diagnosis: Utilizing ResNet-101 on MRI Images for Detection
-        A Review of Recent Advances in Classification and Prediction of Brain Tumor using Deep Learning
-        AI based Yoga Trainer - Simplifying home yoga using mediapipe and video streamin
-        Automated Face Spoofing Detection using Machine Learning: A Review
-        Classification of imbalanced medical data: An empirical study of machine learning approaches
-        Digital Yoga Game with Enhanced Pose Grading Model/n 
-        These are the titles i want to extract the important keywords from each and every title 
-        that will describe the idea and domain of the title and give the keywords in python list form in response""" )
+response = model.generate_content("""
+                                  A new framework for distributed clustering based data aggregation in WSN
+                                  Rice Leaves Disease Detection Mechanism Using VGG16 Deep Learning Architecture
+                                  Enhancing Security and Transparency in Video Conferencing Systems through Blockchain Integration
+                                  A Machine Learning-Based Analysis of Stock Market Forecasting: A Review
+                                  AI-Powered Approaches for Identifying Misinformation in Social Media Platforms
+                                  Mechanism Using VGG16 Deep Learning
+
+These are the research paper titles:\n{title_text}\n\n i want to extract the important keywords from each and every title 
+that will describe the idea and domain of the title and give only the extracted keywords in python list form in response no need to give any other textr other than the extracted keywords and ignore if no generic titles are extracted.
+Example response:[keyword1, keyword2, keyword3, keywords4,........keywordN]
+Donot give any introductory line and no need to give title names only give the extarcted keywords as it is in the respone.""" )
 
 # Print the response
 print(response.text)
