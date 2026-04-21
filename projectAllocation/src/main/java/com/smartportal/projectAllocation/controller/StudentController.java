@@ -1,11 +1,12 @@
 package com.smartportal.projectAllocation.controller;
 
-import com.fasterxml.jackson.databind.JsonNode;
-import com.fasterxml.jackson.databind.ObjectMapper;
+// import com.fasterxml.jackson.databind.JsonNode;
+// import com.fasterxml.jackson.databind.ObjectMapper;
 import com.smartportal.projectAllocation.model.Faculty;
 import com.smartportal.projectAllocation.model.Student;
 import com.smartportal.projectAllocation.repository.FacultyRepository;
 import com.smartportal.projectAllocation.repository.StudentRepository;
+import com.smartportal.projectAllocation.service.StudentSelectionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
@@ -17,6 +18,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/students")
+@CrossOrigin(origins = "*")
 public class StudentController {
 
     @Autowired
@@ -28,28 +30,43 @@ public class StudentController {
     @Autowired
     private RestTemplate restTemplate;
 
+    @Autowired
+    private StudentSelectionService selectionService;
+
     /**
-     * Register a student and automatically recommend + assign a faculty
+     * ✨ NEW: Get recommendations for a student (without auto-assigning)
      */
-    @PostMapping("/register")
-    public ResponseEntity<Student> registerStudent(@RequestBody Student student) {
+    @PostMapping("/{studentId}/get-recommendations")
+    public ResponseEntity<?> getRecommendations(@PathVariable Long studentId) {
+        Student student = studentRepository.findById(studentId)
+            .orElseThrow(() -> new RuntimeException("Student not found"));
 
-        // Step 1: Save student first (basic info)
-        Student savedStudent = studentRepository.save(student);
+        // Check if student can still select
+        if (!selectionService.canStudentSelect(studentId)) {
+            return ResponseEntity.badRequest().body(Map.of(
+                "error", "Selection deadline has passed or you already have a confirmed faculty"
+            ));
+        }
 
-        // Step 2: Fetch all faculty from DB
-        List<Faculty> allFaculty = facultyRepository.findAll();
+        // Fetch all faculty
+        List<Faculty> allFaculty = facultyRepository.findAvailableFaculty();
 
-        // Step 3: Prepare payload for ML recommender
-        List<Map<String, String>> facultyPayload = allFaculty.stream().map(fac -> {
-            Map<String, String> map = new HashMap<>();
-            map.put("name", fac.getName());
-            map.put("email", fac.getEmail());
-            map.put("domainExpertise", fac.getDomainExpertise());
-            return map;
-        }).toList();
+        // Prepare payload for ML recommender
+        List<Map<String, String>> facultyPayload = allFaculty.stream()
+            .map(fac -> {
+                Map<String, String> map = new HashMap<>();
+                map.put("name", fac.getName());
+                map.put("email", fac.getEmail());
+                map.put("domainExpertise", fac.getDomainExpertise());
+                return map;
+            }).toList();
 
-        // Combine project title + idea as one string for semantic matching
+        if (facultyPayload.isEmpty()) {
+            return ResponseEntity.ok(Map.of(
+                "message", "No faculty available at the moment"
+            ));
+        }
+
         String combinedText = student.getProjectTitle() + " " + student.getProjectIdea();
 
         Map<String, Object> requestPayload = new HashMap<>();
@@ -61,67 +78,70 @@ public class StudentController {
         HttpEntity<Map<String, Object>> httpEntity = new HttpEntity<>(requestPayload, headers);
 
         try {
-            // Step 4: Call Flask recommender
             ResponseEntity<String> response = restTemplate.postForEntity(
                     "http://localhost:5001/recommend-faculty", 
                     httpEntity, 
                     String.class
             );
 
-            // Step 5: Parse ML service response
-            ObjectMapper mapper = new ObjectMapper();
-            JsonNode root = mapper.readTree(response.getBody());
-
-            // Pick the top-1 faculty recommendation
-            String topFacultyEmail = root.get("recommendations").get(0).get("email").asText();
-
-            Faculty matched = facultyRepository.findByEmail(topFacultyEmail);
-
-            // Step 6: Assign faculty to student
-            savedStudent.setAssignedFaculty(matched);
-            Student finalStudent = studentRepository.save(savedStudent);
-
-            return ResponseEntity.ok(finalStudent);
+            return ResponseEntity.ok(response.getBody());
 
         } catch (Exception e) {
             e.printStackTrace();
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(student);
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                .body(Map.of("error", e.getMessage()));
         }
     }
 
     /**
-     * Endpoint for testing recommendations without saving student
+     * ✨ NEW: Student selects a faculty from recommendations
      */
-    @PostMapping("/recommend")
-    public ResponseEntity<?> recommendFaculty(@RequestBody Map<String, String> payload) {
-        String projectTitle = payload.get("projectTitle");
-        String projectIdea = payload.get("projectIdea");
-        String combinedText = projectTitle + " " + projectIdea;
+    @PostMapping("/{studentId}/select-faculty/{facultyId}")
+    public ResponseEntity<?> selectFaculty(
+            @PathVariable Long studentId, 
+            @PathVariable Long facultyId) {
+        
+        try {
+            String message = selectionService.requestFaculty(studentId, facultyId);
+            return ResponseEntity.ok(Map.of("message", message));
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body(Map.of("error", e.getMessage()));
+        }
+    }
 
-        List<Faculty> allFaculty = facultyRepository.findAll();
-
-        List<Map<String, String>> facultyPayload = allFaculty.stream().map(fac -> {
-            Map<String, String> map = new HashMap<>();
-            map.put("name", fac.getName());
-            map.put("email", fac.getEmail());
-            map.put("domainExpertise", fac.getDomainExpertise());
-            return map;
-        }).toList();
-
-        Map<String, Object> requestPayload = new HashMap<>();
-        requestPayload.put("student_project", combinedText);
-        requestPayload.put("faculty", facultyPayload);
-
-        HttpHeaders headers = new HttpHeaders();
-        headers.setContentType(MediaType.APPLICATION_JSON);
-        HttpEntity<Map<String, Object>> httpEntity = new HttpEntity<>(requestPayload, headers);
-
-        ResponseEntity<String> response = restTemplate.postForEntity(
-                "http://localhost:5001/recommend-faculty", 
-                httpEntity, 
-                String.class
-        );
-        return ResponseEntity.ok(response.getBody());
+    /**
+     * ✨ NEW: Get student's current status
+     */
+    @GetMapping("/{studentId}/status")
+    public ResponseEntity<?> getStudentStatus(@PathVariable Long studentId) {
+        try {
+            String status = selectionService.getStudentStatus(studentId);
+            Student student = studentRepository.findById(studentId)
+                .orElseThrow(() -> new RuntimeException("Student not found"));
+            
+            Map<String, Object> response = new HashMap<>();
+            response.put("status", status);
+            response.put("selectionStatus", student.getSelectionStatus());
+            response.put("canSelect", selectionService.canStudentSelect(studentId));
+            
+            if (student.getRequestedFaculty() != null) {
+                response.put("requestedFaculty", Map.of(
+                    "id", student.getRequestedFaculty().getId(),
+                    "name", student.getRequestedFaculty().getName()
+                ));
+            }
+            
+            if (student.getAssignedFaculty() != null) {
+                response.put("assignedFaculty", Map.of(
+                    "id", student.getAssignedFaculty().getId(),
+                    "name", student.getAssignedFaculty().getName()
+                ));
+            }
+            
+            return ResponseEntity.ok(response);
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body(Map.of("error", e.getMessage()));
+        }
     }
 
     /**
@@ -137,7 +157,7 @@ public class StudentController {
         return studentRepository.findAll();
     }
 
-    @GetMapping("/{email}")
+    @GetMapping("/email/{email}")
     public Student getStudentByEmail(@PathVariable String email) {
         return studentRepository.findByEmail(email);
     }

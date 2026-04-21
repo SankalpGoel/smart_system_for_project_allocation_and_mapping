@@ -72,6 +72,24 @@ public class FacultyController {
         }
     }
 
+    @GetMapping("/slots")
+    public ResponseEntity<List<Map<String, Object>>> getAllFacultySlots() {
+        List<Faculty> allFaculty = facultyRepository.findAll();
+    
+        List<Map<String, Object>> slots = allFaculty.stream().map(f -> {
+            Map<String, Object> slot = new HashMap<>();
+            slot.put("facultyId", f.getId());
+            slot.put("facultyName", f.getName());
+            slot.put("currentLoad", f.getCurrentLoad());
+            slot.put("maxLoad", f.getMaxLoad());
+            slot.put("availableSlots", f.getAvailableSlots());
+            slot.put("isFull", !f.hasAvailableSlots());
+            return slot;
+        }).toList();
+    
+        return ResponseEntity.ok(slots);
+    }
+
     @PostMapping("/load-json")
     public String loadFacultyJson() {
         
