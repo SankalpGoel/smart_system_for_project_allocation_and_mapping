@@ -7,6 +7,12 @@ import Login from './pages/Login';
 import AdminDashboard from './pages/admin/AdminDashboard';
 import AdminSettings from './pages/admin/AdminSettings';
 import AdminUsers from './pages/admin/AdminUsers';
+import StudentDashboard from './pages/student/StudentDashboard';
+import StudentRecommendations from './pages/student/StudentRecommendations';
+import StudentUpload from './pages/student/StudentUpload';
+import FacultyDashboard from './pages/faculty/FacultyDashboard';
+import FacultyRequests from './pages/faculty/FacultyRequests';
+import FacultyProfile from './pages/faculty/FacultyProfile';
 
 // Mock dashboard components for now
 const MockDashboard = ({ title }) => (
@@ -43,15 +49,37 @@ function App() {
 
           {/* Protected Routes */}
           <Route element={<DashboardLayout />}>
+            {/* Student Routes */}
             <Route path="/student" element={
               <ProtectedRoute allowedRole="STUDENT">
-                <MockDashboard title="Student" />
+                <StudentDashboard />
+              </ProtectedRoute>
+            } />
+            <Route path="/student/recommendations" element={
+              <ProtectedRoute allowedRole="STUDENT">
+                <StudentRecommendations />
+              </ProtectedRoute>
+            } />
+            <Route path="/student/upload" element={
+              <ProtectedRoute allowedRole="STUDENT">
+                <StudentUpload />
               </ProtectedRoute>
             } />
             
+            {/* Faculty Routes */}
             <Route path="/faculty" element={
               <ProtectedRoute allowedRole="FACULTY">
-                <MockDashboard title="Faculty" />
+                <FacultyDashboard />
+              </ProtectedRoute>
+            } />
+            <Route path="/faculty/requests" element={
+              <ProtectedRoute allowedRole="FACULTY">
+                <FacultyRequests />
+              </ProtectedRoute>
+            } />
+            <Route path="/faculty/profile" element={
+              <ProtectedRoute allowedRole="FACULTY">
+                <FacultyProfile />
               </ProtectedRoute>
             } />
             

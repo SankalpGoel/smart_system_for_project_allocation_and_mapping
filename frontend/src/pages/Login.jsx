@@ -4,23 +4,52 @@ import Card from '../components/Card';
 import Input from '../components/Input';
 import Button from '../components/Button';
 import toast from 'react-hot-toast';
+import api from '../utils/api';
 
 const Login = () => {
   const { login } = useAuth();
   const [role, setRole] = useState('STUDENT');
   const [email, setEmail] = useState('');
   
-  const handleLogin = (e) => {
+  const handleLogin = async (e) => {
     e.preventDefault();
     if (!email) {
       toast.error('Please enter an email');
       return;
     }
     
-    // Mock login IDs based on role
-    const id = role === 'STUDENT' ? 1 : role === 'FACULTY' ? 1 : 0;
-    login(role, email, id, email.split('@')[0]);
-    toast.success(`Logged in as ${role}`);
+    try {
+      if (role === 'STUDENT') {
+        let res = await api.get(`/students/email/${email}`).catch(() => null);
+        if (!res || !res.data || !res.data.id) {
+          // Auto-register for demo
+          res = await api.post('/students', { name: email.split('@')[0], email: email, selectionStatus: 'PENDING' });
+          toast.success('New student account created automatically');
+        }
+        if (res && res.data && res.data.id) {
+          login(role, email, res.data.id, res.data.name);
+          toast.success(`Welcome, ${res.data.name}!`);
+        }
+      } else if (role === 'FACULTY') {
+        let res = await api.get(`/faculty/${email}`).catch(() => null);
+        if (!res || !res.data || !res.data.id) {
+          // Auto-register for demo
+          res = await api.post('/faculty', { name: email.split('@')[0], email: email, currentLoad: 0, maxLoad: 5 });
+          toast.success('New faculty account created automatically');
+        }
+        if (res && res.data && res.data.id) {
+          login(role, email, res.data.id, res.data.name);
+          toast.success(`Welcome, Dr. ${res.data.name}!`);
+        }
+      } else {
+        // Admin is typically a single generic user for this demo
+        login('ADMIN', email, 0, 'System Admin');
+        toast.success('Logged in as Admin');
+      }
+    } catch (error) {
+      console.error(error);
+      toast.error('Failed to connect to backend or register user');
+    }
   };
 
   return (
